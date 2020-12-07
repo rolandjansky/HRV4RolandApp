@@ -292,59 +292,6 @@ class HomePageView extends State<HomePage> with SingleTickerProviderStateMixin {
     });
   }
 
-  void _updateBPM() async {
-    // Bear in mind that the method used to calculate the BPM is very rudimentar
-    // feel free to improve it :)
-
-    // Since this function doesn't need to be so "exact" regarding the time it executes,
-    // I only used the a Future.delay to repeat it from time to time.
-    // Ofc you can also use a Timer object to time the callback of this function
-    List<SensorValue> _values;
-    double _avg;
-    int _n;
-    double _m;
-    double _threshold;
-    double _bpm;
-    int _counter;
-    int _previous;
-    while (_toggled) {
-      _values = List.from(_datacut); // create a copy of the current data array
-      _avg = 0;
-      _n = _values.length;
-      _m = 0;
-      _values.forEach((SensorValue value) {
-        _avg += value.value / _n;
-        if (value.value > _m) _m = value.value;
-      });
-      _threshold = (_m + _avg) / 2;
-      _bpm = 0;
-      _counter = 0;
-      _previous = 0;
-      for (int i = 1; i < _n; i++) {
-        if (_values[i - 1].value < _threshold &&
-            _values[i].value > _threshold) {
-          if (_previous != 0) {
-            _counter++;
-            _bpm += 60 *
-                1000 /
-                (_values[i].time.millisecondsSinceEpoch - _previous);
-          }
-          _previous = _values[i].time.millisecondsSinceEpoch;
-        }
-      }
-      if (_counter > 0) {
-        _bpm = _bpm / _counter;
-        print(_bpm);
-        setState(() {
-          this._bpm = ((1 - _alpha) * _bpm + _alpha * _bpm).toInt();
-        });
-      }
-      await Future.delayed(Duration(
-          milliseconds:
-              1000 * _windowLen ~/ _fs)); // wait for a new set of _data values
-    }
-  }
-
   void createFile(List<dynamic> content, Directory dir, String fileName) {
     print("Creating file!");
     File file = new File(dir.path + "/" + fileName);

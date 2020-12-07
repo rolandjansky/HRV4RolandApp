@@ -34,7 +34,7 @@ packages:
     description:
       path: "packages/camera"
       ref: flash_light
-      resolved-ref: e15088f694543085d14e96be5ccf784ff189c88e
+      resolved-ref: fd7cffb44b0f86f5e467180c62cea44df7172651
       url: "https://github.com/Renesanse/plugins.git"
     source: git
     version: "0.5.7+3"
@@ -98,7 +98,7 @@ packages:
       name: flutter_launcher_icons
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.4"
+    version: "0.7.5"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -255,7 +255,7 @@ packages:
       name: wakelock
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.4+1"
+    version: "0.1.4+2"
   xml:
     dependency: transitive
     description:
@@ -269,7 +269,7 @@ packages:
       name: yaml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.1"
 sdks:
   dart: ">=2.7.0 <3.0.0"
   flutter: ">=1.12.0 <2.0.0"
